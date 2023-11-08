@@ -316,6 +316,16 @@ namespace ThrottlingTrollSampleWeb
 
                                 return long.TryParse(cost, out long val) ? val : 1;
                             }
+                        },
+                        new ThrottlingTrollRule
+                        {
+                            UriPattern = "/fixed-window-balance-of-10-per-20-seconds",
+
+                            LimitMethod = new FixedWindowRateLimitMethod
+                            {
+                                PermitLimit = 3,
+                                IntervalInSeconds = 20
+                            }
                         }
                     }
                 };
